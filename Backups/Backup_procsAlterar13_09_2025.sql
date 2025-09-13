@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           8.0.42 - MySQL Community Server - GPL
+-- Versão do servidor:           12.0.2-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win64
 -- HeidiSQL Versão:              12.10.0.7000
 -- --------------------------------------------------------
@@ -17,153 +17,153 @@
 
 -- Copiando estrutura do banco de dados para space_ijp
 DROP DATABASE IF EXISTS `space_ijp`;
-CREATE DATABASE IF NOT EXISTS `space_ijp` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `space_ijp` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_uca1400_ai_ci */;
 USE `space_ijp`;
 
 -- Copiando estrutura para tabela space_ijp.baselancamento
 DROP TABLE IF EXISTS `baselancamento`;
 CREATE TABLE IF NOT EXISTS `baselancamento` (
-  `codbaseLancamento` int NOT NULL AUTO_INCREMENT,
+  `codbaseLancamento` int(11) NOT NULL AUTO_INCREMENT,
   `nomebase` varchar(150) NOT NULL,
   `paisbase` varchar(150) NOT NULL,
   `precoConstrucao` decimal(12,2) NOT NULL,
   PRIMARY KEY (`codbaseLancamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
 
--- Copiando dados para a tabela space_ijp.baselancamento: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela space_ijp.baselancamento: ~1 rows (aproximadamente)
 INSERT INTO `baselancamento` (`codbaseLancamento`, `nomebase`, `paisbase`, `precoConstrucao`) VALUES
 	(1, 'JUT', 'Brasil', 20000000.20);
 
 -- Copiando estrutura para tabela space_ijp.carga
 DROP TABLE IF EXISTS `carga`;
 CREATE TABLE IF NOT EXISTS `carga` (
-  `codcarga` int NOT NULL AUTO_INCREMENT,
+  `codcarga` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(150) NOT NULL,
   `peso` decimal(5,1) NOT NULL,
   `descricao` varchar(150) NOT NULL,
-  `Foguete_codFoguete` int NOT NULL,
+  `Foguete_codFoguete` int(11) NOT NULL,
   PRIMARY KEY (`codcarga`,`Foguete_codFoguete`),
   KEY `fk_carga_Foguete1_idx` (`Foguete_codFoguete`),
   CONSTRAINT `fk_carga_Foguete1` FOREIGN KEY (`Foguete_codFoguete`) REFERENCES `foguete` (`codFoguete`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
 
--- Copiando dados para a tabela space_ijp.carga: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela space_ijp.carga: ~1 rows (aproximadamente)
 INSERT INTO `carga` (`codcarga`, `tipo`, `peso`, `descricao`, `Foguete_codFoguete`) VALUES
 	(1, 'Robôs', 120.2, 'Robos colonizadores', 1);
 
 -- Copiando estrutura para tabela space_ijp.cargo
 DROP TABLE IF EXISTS `cargo`;
 CREATE TABLE IF NOT EXISTS `cargo` (
-  `codcargo` int NOT NULL AUTO_INCREMENT,
+  `codcargo` int(11) NOT NULL AUTO_INCREMENT,
   `nomeCargo` varchar(150) NOT NULL,
   `salarioInicial` varchar(150) NOT NULL,
   PRIMARY KEY (`codcargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
 
--- Copiando dados para a tabela space_ijp.cargo: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela space_ijp.cargo: ~1 rows (aproximadamente)
 INSERT INTO `cargo` (`codcargo`, `nomeCargo`, `salarioInicial`) VALUES
 	(1, 'Gerente', '50000');
 
 -- Copiando estrutura para tabela space_ijp.destino
 DROP TABLE IF EXISTS `destino`;
 CREATE TABLE IF NOT EXISTS `destino` (
-  `codDestino` int NOT NULL AUTO_INCREMENT,
+  `codDestino` int(11) NOT NULL AUTO_INCREMENT,
   `nomeLocal` varchar(150) NOT NULL,
   `distancia` float NOT NULL,
   `pressao` decimal(7,2) NOT NULL,
   `aceleracaoGravidade` decimal(7,3) NOT NULL,
   `tipo` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`codDestino`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
 
--- Copiando dados para a tabela space_ijp.destino: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela space_ijp.destino: ~1 rows (aproximadamente)
 INSERT INTO `destino` (`codDestino`, `nomeLocal`, `distancia`, `pressao`, `aceleracaoGravidade`, `tipo`) VALUES
 	(1, 'Marte', 256000000, 22.12, 3.711, 'Rochoso');
 
 -- Copiando estrutura para tabela space_ijp.financiamento
 DROP TABLE IF EXISTS `financiamento`;
 CREATE TABLE IF NOT EXISTS `financiamento` (
-  `codFinanciamento` int NOT NULL AUTO_INCREMENT,
+  `codFinanciamento` int(11) NOT NULL AUTO_INCREMENT,
   `patrocinador` varchar(100) NOT NULL,
   `valor` decimal(10,2) NOT NULL,
-  `Missoes_codMissao` int NOT NULL,
+  `Missoes_codMissao` int(11) NOT NULL,
   PRIMARY KEY (`codFinanciamento`,`Missoes_codMissao`),
   KEY `fk_Financiamento_Missoes1_idx` (`Missoes_codMissao`),
   CONSTRAINT `fk_Financiamento_Missoes1` FOREIGN KEY (`Missoes_codMissao`) REFERENCES `missoes` (`codMissao`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
 
 -- Copiando dados para a tabela space_ijp.financiamento: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela space_ijp.foguete
 DROP TABLE IF EXISTS `foguete`;
 CREATE TABLE IF NOT EXISTS `foguete` (
-  `codFoguete` int NOT NULL AUTO_INCREMENT,
+  `codFoguete` int(11) NOT NULL AUTO_INCREMENT,
   `nomeFoguete` varchar(150) NOT NULL,
-  `maximoCombustivel` float NOT NULL DEFAULT (0),
-  `velocidade` DECIMAL(10,2) NOT NULL,
-  `status` tinyint NOT NULL,
+  `maximoCombustivel` float NOT NULL DEFAULT 0,
+  `velocidade` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`codFoguete`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
 
--- Copiando dados para a tabela space_ijp.foguete: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela space_ijp.foguete: ~1 rows (aproximadamente)
 INSERT INTO `foguete` (`codFoguete`, `nomeFoguete`, `maximoCombustivel`, `velocidade`, `status`) VALUES
-	(1, 'Aguia', 2000, '80000', 0);
+	(1, 'Gaviao', 4000, 90000.00, 0);
 
 -- Copiando estrutura para tabela space_ijp.funcionario
 DROP TABLE IF EXISTS `funcionario`;
 CREATE TABLE IF NOT EXISTS `funcionario` (
-  `codFuncionario` int NOT NULL AUTO_INCREMENT,
+  `codFuncionario` int(11) NOT NULL AUTO_INCREMENT,
   `nomeFuncionario` varchar(150) NOT NULL,
   `cpf` varchar(150) NOT NULL,
   `salarioAtual` decimal(8,2) NOT NULL,
   `rg` varchar(150) DEFAULT NULL,
   `telefone` varchar(150) NOT NULL,
   `cep` varchar(150) DEFAULT NULL,
-  `dataNascimento` date NOT NULL DEFAULT (0),
-  `status` tinyint DEFAULT NULL,
-  `cargo_codcargo` int NOT NULL,
+  `dataNascimento` date NOT NULL DEFAULT '0000-00-00',
+  `status` tinyint(4) DEFAULT NULL,
+  `cargo_codcargo` int(11) NOT NULL,
   PRIMARY KEY (`codFuncionario`,`cargo_codcargo`),
   KEY `fk_Funcionario_cargo_idx` (`cargo_codcargo`),
   CONSTRAINT `fk_Funcionario_cargo` FOREIGN KEY (`cargo_codcargo`) REFERENCES `cargo` (`codcargo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
 
--- Copiando dados para a tabela space_ijp.funcionario: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela space_ijp.funcionario: ~1 rows (aproximadamente)
 INSERT INTO `funcionario` (`codFuncionario`, `nomeFuncionario`, `cpf`, `salarioAtual`, `rg`, `telefone`, `cep`, `dataNascimento`, `status`, `cargo_codcargo`) VALUES
-	(1, 'PedroLucas', '13672533121', 2.10, NULL, '456789067890', NULL, '2001-11-09', NULL, 1);
+	(1, 'Pedro', '3456789012', 12000.00, NULL, '9587437643', NULL, '2000-12-09', NULL, 1);
 
 -- Copiando estrutura para tabela space_ijp.lancamentos
 DROP TABLE IF EXISTS `lancamentos`;
 CREATE TABLE IF NOT EXISTS `lancamentos` (
-  `codLancamentos` int NOT NULL AUTO_INCREMENT,
+  `codLancamentos` int(11) NOT NULL AUTO_INCREMENT,
   `dataLancamento` date NOT NULL,
   `resultado` varchar(50) NOT NULL,
-  `Foguete_codFoguete` int NOT NULL,
-  `Missoes_codMissao` int NOT NULL,
+  `Foguete_codFoguete` int(11) NOT NULL,
+  `Missoes_codMissao` int(11) NOT NULL,
   PRIMARY KEY (`codLancamentos`,`Foguete_codFoguete`,`Missoes_codMissao`),
   KEY `fk_Lancamentos_Foguete1_idx` (`Foguete_codFoguete`),
   KEY `fk_Lancamentos_Missoes1_idx` (`Missoes_codMissao`),
   CONSTRAINT `fk_Lancamentos_Foguete1` FOREIGN KEY (`Foguete_codFoguete`) REFERENCES `foguete` (`codFoguete`),
   CONSTRAINT `fk_Lancamentos_Missoes1` FOREIGN KEY (`Missoes_codMissao`) REFERENCES `missoes` (`codMissao`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
 
 -- Copiando dados para a tabela space_ijp.lancamentos: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela space_ijp.missoes
 DROP TABLE IF EXISTS `missoes`;
 CREATE TABLE IF NOT EXISTS `missoes` (
-  `codMissao` int NOT NULL AUTO_INCREMENT,
+  `codMissao` int(11) NOT NULL AUTO_INCREMENT,
   `nomeMissao` varchar(100) NOT NULL,
   `objetivoMissao` mediumtext NOT NULL,
   `dataInicio` date DEFAULT NULL,
   `dataFim` date DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
-  `Destino_codDestino` int NOT NULL,
+  `Destino_codDestino` int(11) NOT NULL,
   PRIMARY KEY (`codMissao`,`Destino_codDestino`),
   KEY `fk_Missoes_Destino1_idx` (`Destino_codDestino`),
   CONSTRAINT `fk_Missoes_Destino1` FOREIGN KEY (`Destino_codDestino`) REFERENCES `destino` (`codDestino`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
 
--- Copiando dados para a tabela space_ijp.missoes: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela space_ijp.missoes: ~1 rows (aproximadamente)
 INSERT INTO `missoes` (`codMissao`, `nomeMissao`, `objetivoMissao`, `dataInicio`, `dataFim`, `status`, `Destino_codDestino`) VALUES
 	(1, 'Raputinik', 'Pousar em Marte e obter dados', NULL, NULL, NULL, 1);
 
@@ -226,7 +226,7 @@ SELECT COUNT(*) INTO @existe FROM cargo WHERE codcargo = vcodCargo;
 	if (@existe)
 		then UPDATE cargo SET nomeCargo = vnomeCargo, salarioInicial = vsalarioInicial 
 		WHERE codcargo = vcodCargo;
-		ELSE SELECT "Cargo não encontrada" AS ERRO;
+		ELSE SELECT "Cargo não encontrado" AS ERRO;
 	END if;
 	
 	SELECT * FROM cargo;	
@@ -250,7 +250,7 @@ SELECT COUNT(*) INTO @existe FROM destino WHERE codDestino = vcodDestino;
 		then UPDATE destino SET nomeLocal = vnomeLocal, distancia = vdistancia, pressao = vpressao,
 		aceleracaoGravidade = vaceleracaoGravidade
 		WHERE codDestino = vcodDestino;
-		ELSE SELECT "Destino não encontrada" AS ERRO;
+		ELSE SELECT "Destino não encontrado" AS ERRO;
 	END if;
 	
 	SELECT * FROM destino;	
@@ -272,10 +272,83 @@ SELECT COUNT(*) INTO @existe FROM financiamento WHERE codFinanciamento = vcodFin
 	if (@existe)
 		then UPDATE financiamento SET patrocinador = vpatrocinador, valor = vvalor, Missoes_codMissao = vMissoes_codMissao
 		WHERE codFinanciamento = vcodFinanciamento;
-		ELSE SELECT "Financiamento não encontrada" AS ERRO;
+		ELSE SELECT "Financiamento não encontrado" AS ERRO;
 	END if;
 	
 	SELECT * FROM Financiamento;	
+END//
+DELIMITER ;
+
+-- Copiando estrutura para procedure space_ijp.proc_AlteraFoguete
+DROP PROCEDURE IF EXISTS `proc_AlteraFoguete`;
+DELIMITER //
+CREATE PROCEDURE `proc_AlteraFoguete`(
+	IN `vcodFoguete` INT,
+	IN `vnomeFoguete` VARCHAR(150),
+	IN `vmaximoCombustivel` FLOAT,
+	IN `vvelocidade` DECIMAL(10,2),
+	IN `vstatus` TINYINT
+)
+BEGIN
+SELECT COUNT(*) INTO @existe FROM Foguete WHERE codFoguete = vcodFoguete;
+
+	if (@existe)
+		then UPDATE Foguete SET nomeFoguete = vnomeFoguete, maximoCombustivel = vmaximoCombustivel,
+		velocidade = vvelocidade, status = vstatus
+		WHERE codFoguete = vcodFoguete;
+		ELSE SELECT "Foguete não encontrado" AS ERRO;
+	END if;
+	
+	SELECT * FROM Foguete;	
+END//
+DELIMITER ;
+
+-- Copiando estrutura para procedure space_ijp.proc_AlteraFuncionario
+DROP PROCEDURE IF EXISTS `proc_AlteraFuncionario`;
+DELIMITER //
+CREATE PROCEDURE `proc_AlteraFuncionario`(
+	IN `vcodFuncionario` INT,
+	IN `vnomeFuncionario` VARCHAR(150),
+	IN `vcpf` VARCHAR(150),
+	IN `vsalarioAtual` DECIMAL(8,2),
+	IN `vtelefone` VARCHAR(150),
+	IN `vdataNascimento` DATE,
+	IN `vcargo_codcargo` INT
+)
+BEGIN
+SELECT COUNT(*) INTO @existe FROM Funcionario WHERE codFuncionario = vcodFuncionario;
+
+	if (@existe)
+		then UPDATE Funcionario SET nomeFuncionario = vnomeFuncionario, cpf = vcpf, salarioAtual = vsalarioAtual,
+		telefone = vtelefone, dataNascimento = vdataNascimento, cargo_codcargo = vcargo_codcargo
+		WHERE codFuncionario = vcodFuncionario;
+		ELSE SELECT "Funcionario não encontrado" AS ERRO;
+	END if;
+	
+	SELECT * FROM Funcionario;	
+END//
+DELIMITER ;
+
+-- Copiando estrutura para procedure space_ijp.proc_AlteraLancamentos
+DROP PROCEDURE IF EXISTS `proc_AlteraLancamentos`;
+DELIMITER //
+CREATE PROCEDURE `proc_AlteraLancamentos`(
+	IN `vcodLancamentos` INT,
+	IN `vresultado` VARCHAR(150),
+	IN `vFoguete_codFoguete` INT,
+	IN `vMissoes_codMissao` INT
+)
+BEGIN
+SELECT COUNT(*) INTO @existe FROM Lancamentos WHERE codLancamentos = vcodLancamentos;
+
+	if (@existe)
+		then UPDATE Lancamentos SET dataLancamento = vdataLancamento, resultado = vresultado,
+		Foguete_codFoguete = vFoguete_codFoguete, Missoes_codMissao = vMissoes_codMissao
+		WHERE codLancamentos = vcodLancamentos;
+		ELSE SELECT "Funcionario não encontrado" AS ERRO;
+	END if;
+	
+	SELECT * FROM Lancamentos;	
 END//
 DELIMITER ;
 
@@ -297,7 +370,7 @@ SELECT COUNT(*) INTO @existe FROM missoes WHERE codsensores = vcodsensores;
 		then UPDATE missoes SET nomeMissao = vnomeMissao, objetivoMissao = vobjetivoMissao,
 		dataInicio = vdataInicio, dataFim = vdataFim, status = vstatus, Destino_codMissao = vDestino_codMissao 
 		WHERE codsensores = vcodsensores;
-		ELSE SELECT "Cargo não encontrada" AS ERRO;
+		ELSE SELECT "Missão não encontrada" AS ERRO;
 	END if;
 	
 	SELECT * FROM missoes;	
@@ -320,7 +393,7 @@ SELECT COUNT(*) INTO @existe FROM sensores WHERE codsensores = vcodsensores;
 		then UPDATE sensores SET tipo = vtipo, unidade = vunidade, position = vposition,
 		Foguete_codFoguete = Foguete_codFoguete
 		WHERE codsensores = vcodsensores;
-		ELSE SELECT "Cargo não encontrada" AS ERRO;
+		ELSE SELECT "sensor não encontrado" AS ERRO;
 	END if;
 	
 	SELECT * FROM sensores;	
@@ -488,17 +561,17 @@ DELIMITER ;
 -- Copiando estrutura para tabela space_ijp.sensores
 DROP TABLE IF EXISTS `sensores`;
 CREATE TABLE IF NOT EXISTS `sensores` (
-  `codSensores` int NOT NULL AUTO_INCREMENT,
+  `codSensores` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(50) NOT NULL,
   `unidade` varchar(20) NOT NULL,
   `position` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '',
-  `Foguete_codFoguete` int NOT NULL,
+  `Foguete_codFoguete` int(11) NOT NULL,
   PRIMARY KEY (`codSensores`,`Foguete_codFoguete`),
   KEY `fk_Sensores_Foguete1_idx` (`Foguete_codFoguete`),
   CONSTRAINT `fk_Sensores_Foguete1` FOREIGN KEY (`Foguete_codFoguete`) REFERENCES `foguete` (`codFoguete`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
 
--- Copiando dados para a tabela space_ijp.sensores: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela space_ijp.sensores: ~1 rows (aproximadamente)
 INSERT INTO `sensores` (`codSensores`, `tipo`, `unidade`, `position`, `Foguete_codFoguete`) VALUES
 	(1, 'luminosidade', '2.0', 'lateral direita', 1);
 
