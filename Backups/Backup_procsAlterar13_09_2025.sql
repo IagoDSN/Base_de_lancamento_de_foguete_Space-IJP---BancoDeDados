@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `baselancamento` (
   `paisbase` varchar(150) NOT NULL,
   `precoConstrucao` decimal(12,2) NOT NULL,
   PRIMARY KEY (`codbaseLancamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
 -- Copiando dados para a tabela space_ijp.baselancamento: ~1 rows (aproximadamente)
 INSERT INTO `baselancamento` (`codbaseLancamento`, `nomebase`, `paisbase`, `precoConstrucao`) VALUES
