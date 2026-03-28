@@ -1,7 +1,7 @@
 # 🚀 Banco de Dados – Space IJP
 
 ![Projeto SQL](https://img.shields.io/badge/Projeto-SQL-blue)
-![Status Em desenvolvimento](https://img.shields.io/badge/Status-Em_desenvolvimento-red)
+![Status Em desenvolvimento](https://img.shields.io/badge/Status-Completo-green)
 
 Projeto acadêmico de Banco de Dados inspirado em lançamentos de foguetes da **Space IJP**, formada por:  
 - Iago  
